@@ -1,0 +1,18 @@
+{
+  "books": [
+    {
+      "id": 101,
+      "title": "Книга 1",
+      "author": "Автор 1",
+      "imagePath": "path/to/book1.jpg",
+      "status": "В процессе"
+    },
+    {
+      "id": 102,
+      "title": "Книга 2",
+      "author": "Автор 2",
+      "imagePath": "path/to/book2.jpg",
+      "status": "В процессе"
+    }
+  ]
+}

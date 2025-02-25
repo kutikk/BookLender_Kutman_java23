@@ -1,0 +1,64 @@
+{
+  "employees": [
+    {
+      "id": 1,
+      "name": "Иван Иванов",
+      "avatar": "path/to/avatar1.jpg",
+      "currentBooks": [
+        {
+          "id": 101,
+          "title": "Книга 1",
+          "author": "Автор 1",
+          "imagePath": "path/to/book1.jpg",
+          "status": "В процессе"
+        },
+        {
+          "id": 102,
+          "title": "Книга 2",
+          "author": "Автор 2",
+          "imagePath": "path/to/book2.jpg",
+          "status": "В процессе"
+        }
+      ],
+      "pastBooks": [
+        {
+          "id": 103,
+          "title": "Книга 3",
+          "author": "Автор 3",
+          "imagePath": "path/to/book3.jpg",
+          "status": "Прочитано"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Мария Петрова",
+      "avatar": "path/to/avatar2.jpg",
+      "currentBooks": [
+        {
+          "id": 104,
+          "title": "Книга 4",
+          "author": "Автор 4",
+          "imagePath": "path/to/book4.jpg",
+          "status": "В процессе"
+        }
+      ],
+      "pastBooks": [
+        {
+          "id": 105,
+          "title": "Книга 5",
+          "author": "Автор 5",
+          "imagePath": "path/to/book5.jpg",
+          "status": "Прочитано"
+        },
+        {
+          "id": 106,
+          "title": "Книга 6",
+          "author": "Автор 6",
+          "imagePath": "path/to/book6.jpg",
+          "status": "Прочитано"
+        }
+      ]
+    }
+  ]
+}
