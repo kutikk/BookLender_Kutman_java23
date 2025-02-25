@@ -1,0 +1,86 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+/* Стили для карточки сотрудника */
+.employee-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.employee-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+    color: #333;
+    margin-top: 10px;
+}
+
+/* Стили для раздела с книгами */
+.books-section {
+    margin-top: 20px;
+}
+
+h3 {
+    color: #555;
+}
+
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.book-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    text-align: center;
+}
+
+.book-cover {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.book-info {
+    margin-top: 10px;
+}
+
+.book-title {
+    font-weight: bold;
+    color: #333;
+}
+
+.book-author {
+    font-size: 14px;
+    color: #777;
+}
+
+.book-status {
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+}
