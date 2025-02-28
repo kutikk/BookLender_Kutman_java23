@@ -1,0 +1,91 @@
+[
+  {
+    "id": 1,
+    "name": "Иван Иванов",
+    "avatar": "ivan.png",
+    "currentBooks": [],
+    "pastBooks": []
+  },
+  {
+    "id": 2,
+    "name": "Петр Петров",
+    "avatar": "petr.jpg",
+    "currentBooks": [],
+    "pastBooks": []
+  },
+  {
+    "id": 3,
+    "name": "wcsdvs@sdv",
+    "password": "dvsv"
+  },
+  {
+    "id": 4,
+    "name": "kutu",
+    "password": "flag78"
+  },
+  {
+    "id": 5,
+    "name": "Aidemi",
+    "password": "aLINA"
+  },
+  {
+    "id": 6,
+    "name": "dsv",
+    "password": "sdv"
+  },
+  {
+    "id": 7,
+    "name": "0kenov_k",
+    "password": "1234"
+  },
+  {
+    "id": 8,
+    "name": "aiba",
+    "password": "aiba14"
+  },
+  {
+    "id": 9,
+    "name": "Ivan",
+    "password": "ivanko"
+  },
+  {
+    "id": 10,
+    "name": "kutmanokenov18@gmail.com",
+    "password": "24135"
+  },
+  {
+    "id": 11,
+    "name": "Азамат",
+    "password": "2746"
+  },
+  {
+    "id": 12,
+    "name": "dfkjbvk",
+    "password": "dflkkldb"
+  },
+  {
+    "id": 13,
+    "name": "dfkjbvk",
+    "password": "lkn"
+  },
+  {
+    "id": 14,
+    "name": "dfbbdf",
+    "password": "kjdnbf"
+  },
+  {
+    "id": 15,
+    "name": "hanter23232",
+    "password": "21344"
+  },
+  {
+    "id": 16,
+    "name": "kutu",
+    "password": "flagman24"
+  },
+  {
+    "id": 17,
+    "name": "attractor",
+    "password": "2835"
+  }
+]
