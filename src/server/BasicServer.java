@@ -3,12 +3,15 @@ package server;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.InetSocketAddress;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public abstract class BasicServer {
 
@@ -59,6 +62,10 @@ public abstract class BasicServer {
     protected final void registerGet(String route, RouteHandler handler) {
         getRoutes().put("GET " + route, handler);
     }
+    protected final void registerPost(String route, RouteHandler handler) {
+        getRoutes().put("POST " + route, handler);
+    }
+
 
     protected final void registerFileHandler(String fileExt, ContentType type) {
         registerGet(fileExt, exchange -> sendFile(exchange, makeFilePath(exchange), type));
@@ -108,7 +115,7 @@ public abstract class BasicServer {
         }
     }
 
-    private void handleIncomingServerRequests(HttpExchange exchange) {
+    private void handleIncomingServerRequests(HttpExchange exchange) throws IOException {
         var route = getRoutes().getOrDefault(makeKey(exchange), this::respond404);
         route.handle(exchange);
     }
@@ -116,4 +123,18 @@ public abstract class BasicServer {
     public final void start() {
         server.start();
     }
+
+    protected String getBody(HttpExchange exchange){
+        InputStream in = exchange.getRequestBody();
+        Charset utf8 = StandardCharsets.UTF_8;
+        InputStreamReader isr = new InputStreamReader(in,utf8);
+
+        try(BufferedReader reader = new BufferedReader(isr)) {
+            return reader.lines().collect(Collectors.joining(""));
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        return "";
+    }
+
 }

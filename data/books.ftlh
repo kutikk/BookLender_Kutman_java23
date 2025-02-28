@@ -7,7 +7,7 @@
         name="viewport">
     <meta content="ie=edge" http-equiv="X-UA-Compatible">
     <title>Freemarker Sample Page</title>
-    <link href="bookStyle.css" rel="stylesheet">
+    <link href="/css/bookStyle.css" rel="stylesheet">
 </head>
 </head>
 
