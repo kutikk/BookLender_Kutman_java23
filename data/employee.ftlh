@@ -28,7 +28,7 @@
                 <div class="books-grid">
                     <#list Employee.currentBooks as book>
                         <div class="book-card">
-                            <img src="${book.image}" alt="Обложка книги" class="book-cover">
+
                             <div class="book-info">
                                 <p class="book-title">${book.title}</p>
                                 <p class="book-author">${book.author}</p>
