@@ -6,10 +6,11 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
+import model.Book;
 import model.BookLenderDataModel;
 import model.Employee;
-import model.JsonReader;
-import utils.EmployeeStorage;
+import model.EmployeeStorage;
+import utils.JsonReader;
 import utils.Helper;
 import utils.Utils;
 
@@ -25,8 +26,6 @@ public class Server_HTTP extends BasicServer {
     public  Server_HTTP(String host, int port) throws IOException {
         super(host, port);
         registerGet("/books", this::freemarkerSampleHandler);
-        registerGet("/info", this::freemarkerInfoHandler);
-        registerGet("/employee",this::freemarkerEmployeeHandler);
         registerGet("/register",this::regGEt);
         registerPost("/register",this::regPost);
         registerGet("/login",this::logGet);
@@ -35,6 +34,9 @@ public class Server_HTTP extends BasicServer {
         registerPost("/addBook",this::addBookToUser);
         registerPost("/returnBook",this::replaceBook);
         registerGet("/logout",this::logout);
+        registerPost("/book", this::bookDetailsGet);
+
+
     }
     private void authoGet(HttpExchange exchange) {
         Employee employee = (Employee) exchange.getAttribute("employee");
@@ -66,7 +68,7 @@ public class Server_HTTP extends BasicServer {
             }
             return;
         }
-        List<Employee> employees = EmployeeStorage.loadEmployees();
+        List<Employee> employees = JsonReader.loadEmployees();
         for (Employee emp : employees) {
             if (emp.getName().equals(username)) {
                 String redirectPage = Helper.getHTMLinFailedRegister();
@@ -83,7 +85,7 @@ public class Server_HTTP extends BasicServer {
 
         int newId = employees.isEmpty() ? 1 : employees.get(employees.size() - 1).getId() + 1;
         Employee newEmployee = new Employee(newId, username, password);
-        EmployeeStorage.addEmployee(newEmployee);
+        JsonReader.addEmployee(newEmployee);
         String redirectPage = Helper.getSuccesHTML();
         exchange.getResponseHeaders().set("Content-Type", "text/html; charset=UTF-8");
         exchange.sendResponseHeaders(200, redirectPage.getBytes(StandardCharsets.UTF_8).length);
@@ -117,7 +119,7 @@ public class Server_HTTP extends BasicServer {
             sendResponse(exchange, "Ошибка: не все данные переданы!", ResponseCodes.NOT_FOUND.getCode());
             return;
         }
-        List<Employee> employees = EmployeeStorage.loadEmployees();
+        List<Employee> employees = JsonReader.loadEmployees();
         for (Employee emp : employees) {
             if (emp.getName().equals(username) && emp.getPassword().equals(password)) {
                 String cookie = "session=" + emp.getId() + "; Path=/; HttpOnly; SameSite=None; Secure";
@@ -128,9 +130,9 @@ public class Server_HTTP extends BasicServer {
                 return;
             }
         }
-        int newId = employees.isEmpty() ? 1 : employees.get(employees.size() - 1).getId() + 1;
+         int newId = employees.isEmpty() ? 1 : employees.get(employees.size() - 1).getId() + 1;
         Employee newEmployee = new Employee(newId, username, password);
-        EmployeeStorage.addEmployee(newEmployee);
+        JsonReader.addEmployee(newEmployee);
         String redirectPage = Helper.getHTMLWrongPassword();
         exchange.getResponseHeaders().set("Content-Type", "text/html; charset=UTF-8");
         exchange.sendResponseHeaders(200, redirectPage.getBytes(StandardCharsets.UTF_8).length);
@@ -158,13 +160,6 @@ public class Server_HTTP extends BasicServer {
         renderTemplate(exchange, "books.ftlh", getSampleDataModel());
     }
 
-    private void freemarkerInfoHandler(HttpExchange exchange) {
-        renderTemplate(exchange, "info.ftlh", getInformDataModel()  );
-    }
-
-    private void freemarkerEmployeeHandler(HttpExchange exchange) {
-        renderTemplate(exchange, "employee.ftlh", getEmlDataModel());
-    }
 
     protected void renderTemplate(HttpExchange exchange, String templateFile, Object dataModel) {
         try {
@@ -212,8 +207,8 @@ public class Server_HTTP extends BasicServer {
             return;
         }
         int bookId = Integer.parseInt(bookIdStr);
-        JsonReader.addBookToEmployee(userId,bookId);
-        boolean isAdded = EmployeeStorage.addEmpl(userId, bookId);
+        EmployeeStorage.addBookToEmployee(userId,bookId);
+        boolean isAdded = JsonReader.addEmpl(userId, bookId);
         if (isAdded) {
             sendResponse(exchange, "Книга успешно добавлена в список!", ResponseCodes.OK.getCode());
         } else {
@@ -239,7 +234,7 @@ public class Server_HTTP extends BasicServer {
             return;
         }
         int bookId = Integer.parseInt(bookIdStr);
-        EmployeeStorage.removeBook(userId,bookId);
+        JsonReader.removeBook(userId,bookId);
         sendResponse(exchange, "Книга успешно возвращена в список!", ResponseCodes.OK.getCode());
     }
     private void logout(HttpExchange exchange) throws IOException {
@@ -254,16 +249,40 @@ public class Server_HTTP extends BasicServer {
             os.write(redirectPage.getBytes(StandardCharsets.UTF_8));
         }
     }
+    private void bookDetailsGet(HttpExchange exchange) {
+        String raw = getBody(exchange);
+        Map<String, String> parsed = Utils.parseUrlEncoded(raw, "&");
+        String bookIdStr = parsed.get("bookId");
+        if (bookIdStr == null) {
+            sendResponse(exchange, "Ошибка: не указан ID книги!", ResponseCodes.NOT_FOUND.getCode());
+            return;
+        }
+        int bookId = Integer.parseInt(bookIdStr);
+
+        List<Book> books = JsonReader.loadBooks();
+        Book selectedBook = books.stream()
+                .filter(book -> book.getId() == bookId)
+                .findFirst()
+                .orElse(null);
+
+        if (selectedBook == null) {
+            sendResponse(exchange, "Ошибка", ResponseCodes.NOT_FOUND.getCode());
+            return;
+        }
+
+        Map<String, Object> model = new HashMap<>();
+        model.put("book", selectedBook);
+
+        renderTemplate(exchange, "bookDetails.ftml", model);
+    }
+
+
+
 
     private Map<String, Object> getSampleDataModel() {
         return BookLenderDataModel.BookListDataModel();
     }
-    private Map<String,Object> getInformDataModel() {
-        return BookLenderDataModel.InformDataModel();
-    }
-    private Map<String ,Object> getEmlDataModel(){
-        return BookLenderDataModel.EmployeeDataModel();
-    }
+
 
 }
 

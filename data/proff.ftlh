@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -7,7 +8,6 @@
     <title>Профиль сотрудника</title>
     <link href="/css/formstyle.css" rel="stylesheet">
     <style>
-        /* Добавление стилей для карточек книг */
         .book-card {
             border: 1px solid #ddd;
             border-radius: 10px;
@@ -72,7 +72,6 @@
             text-align: center;
         }
 
-        /* Дополнительные стили для общего вида */
         .books-section h3 {
             font-size: 1.5em;
             margin-bottom: 15px;

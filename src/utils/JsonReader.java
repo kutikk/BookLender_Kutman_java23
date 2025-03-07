@@ -14,7 +14,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmployeeStorage {
+public class JsonReader {
     private static final String FILE_PATH = "data/employees.json";
     private static final String FILE_PATH_Book = "data/books.json";
 
