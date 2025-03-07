@@ -3,64 +3,45 @@
     "id": 1,
     "name": "Кутман",
     "password": "1",
-    "currentBooks": [],
-    "pastBooks": []
-  },
-  {
-    "id": 2,
-    "name": "Кутман",
-    "password": "1212",
     "currentBooks": [
       {
         "id": 3,
         "title": "Ak keme",
         "author": "Chyngyz Aitmatov",
-        "status": "Занят"
-      },
-      {
-        "id": 4,
-        "title": "Гарри Поттер",
-        "author": "K. Rouling",
+        "imagePath": "images/akkeme.png",
         "status": "Занят"
       }
     ],
     "pastBooks": [
       {
-        "id": 6,
-        "title": "Распад",
-        "author": "Jack London",
+        "id": 2,
+        "title": "1984",
+        "author": "George Orwell",
+        "imagePath": "images/1984.png",
         "status": "Свободен"
-      },
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "User",
+    "password": "User",
+    "currentBooks": [],
+    "pastBooks": []
+  },
+  {
+    "id": 3,
+    "name": "Кутман",
+    "password": "1212",
+    "currentBooks": [
       {
         "id": 2,
         "title": "1984",
         "author": "George Orwell",
-        "status": "Свободен"
-      },
-      {
-        "id": 3,
-        "title": "Ak keme",
-        "author": "Chyngyz Aitmatov",
-        "status": "Свободен"
-      },
-      {
-        "id": 6,
-        "title": "Распад",
-        "author": "Jack London",
-        "status": "Свободен"
-      },
-      {
-        "id": 1,
-        "title": "Martin Iden",
-        "author": "Jack London",
-        "status": "Свободен"
-      },
-      {
-        "id": 4,
-        "title": "Гарри Поттер",
-        "author": "K. Rouling",
-        "status": "Свободен"
+        "imagePath": "images/1984.png",
+        "status": "Занят"
       }
-    ]
+    ],
+    "pastBooks": []
   }
 ]

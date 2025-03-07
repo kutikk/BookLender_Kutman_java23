@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class JsonReader {
+public class EmployeeStorage {
     private static Map<Integer, Employee> employees = new HashMap<>();
     private static List<Book> books = new ArrayList<>();
     public static void addBookToEmployee(int employeeId, int bookId) {
@@ -13,7 +13,7 @@ public class JsonReader {
         Book book = getBookById(bookId);
         if (employee != null && book != null) {
             employee.getCurrentBooks().add(book);
-            utils.EmployeeStorage.addEmployee(employee);
+            utils.JsonReader.addEmployee(employee);
         }
     }
     public static Book getBookById(int bookId) {
@@ -25,8 +25,5 @@ public class JsonReader {
         return null;
     }
 
-    public static void addBook(Book book) {
-        books.add(book);
-    }
 }
 
