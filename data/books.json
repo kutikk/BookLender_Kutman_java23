@@ -3,42 +3,42 @@
     "id": 1,
     "title": "Martin Iden",
     "author": "Jack London",
-    "image": "images/martin.jpg",
+    "imagePath": "images/martin.jpg",
     "status": "Свободен"
   },
   {
     "id": 2,
     "title": "1984",
     "author": "George Orwell",
-    "image": "images/1984.png",
+    "imagePath": "images/1984.png",
     "status": "Свободен"
   },
   {
     "id": 3,
     "title": "Ak keme",
     "author": "Chyngyz Aitmatov",
-    "image": "images/akkeme.png",
+    "imagePath": "images/akkeme.png",
     "status": "Свободен"
   },
   {
     "id": 4,
     "title": "Гарри Поттер",
     "author": "K. Rouling",
-    "image": "images/garri.png",
+    "imagePath": "images/garri.png",
     "status": "Свободен"
   },
   {
     "id": 5,
     "title": "Милдмарч",
     "author": "Джордж Элиот",
-    "image": "images/mildmarch.png",
+    "imagePath": "images/mildmarch.png",
     "status": "Свободен"
   },
   {
     "id": 6,
     "title": "Распад",
     "author": "Jack London",
-    "image": "images/raspad.png",
+    "imagePath": "images/raspad.png",
     "status": "Свободен"
   }
 ]
